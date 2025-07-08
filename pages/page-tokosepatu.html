@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Sepatu - Detail Proyek | Ramadhan Abdillah</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <!-- Back Button -->
+    <a href="../index.html" class="back-button">
+        <span>←</span> Kembali
+    </a>
+    
+    <div class="container">
+        <!-- Project Hero Section -->
+        <header class="project-hero">
+            <h1 class="title-project">Toko Sepatu</h1>
+            <p class="project-subtitle">Aplikasi Kasir Penjualan Sepatu</p>
+            <p class="project-category">Visual Basic + MySQL</p>
+        </header>
+    
+        <!-- Project Showcase -->
+        <div class="project-showcase">
+            <div class="device-mockup">
+                <div class="laptop-mockup">
+                    <div class="laptop-screen">
+                        <div class="screen-bezel"></div>
+                        <div class="screen-content">
+                            <img src="../images/tokosepatu.png" alt="Tampilan Aplikasi Toko Sepatu">
+                        </div>
+                    </div>
+                    <div class="laptop-hinge"></div>
+                    <div class="laptop-base"></div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Project Description -->
+        <section>
+            <h2 class="section-title">Tentang Proyek</h2>
+            <div class="section-content">
+                <p>Toko Sepatu adalah aplikasi kasir desktop yang dibangun menggunakan Visual Basic dan terhubung ke database MySQL melalui phpMyAdmin. Aplikasi ini mempermudah proses transaksi dan pencatatan penjualan di toko sepatu secara offline.</p>
+                <br>
+                <p>Aplikasi ini memiliki fitur lengkap seperti pengelolaan produk, transaksi pembelian, manajemen stok, laporan penjualan, dan login pengguna.</p>
+            </div>
+        </section>
+    
+        <!-- Features Section -->
+        <section>
+            <h2 class="section-title">Fitur Utama Aplikasi</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">👟</span>
+                    <h3 class="feature-title">Manajemen Produk Sepatu</h3>
+                    <p class="feature-desc">Menambah, mengubah, dan menghapus data sepatu seperti nama, ukuran, harga, dan stok.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">🛒</span>
+                    <h3 class="feature-title">Transaksi Penjualan</h3>
+                    <p class="feature-desc">Mencatat transaksi penjualan secara otomatis, lengkap dengan total harga dan cetak struk.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">📦</span>
+                    <h3 class="feature-title">Manajemen Stok</h3>
+                    <p class="feature-desc">Secara otomatis mengurangi stok saat barang terjual dan memberi peringatan saat stok rendah.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">Laporan Penjualan</h3>
+                    <p class="feature-desc">Menampilkan riwayat transaksi dan laporan penjualan yang bisa dicetak untuk arsip.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">🔐</span>
+                    <h3 class="feature-title">Login & Hak Akses</h3>
+                    <p class="feature-desc">Hanya pengguna yang terdaftar seperti admin/kasir yang bisa mengakses aplikasi.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Technology Stack -->
+        <section>
+            <h2 class="section-title">Teknologi yang Digunakan</h2>
+            <div class="tech-stack">
+                <div class="tech-item">Visual Basic 6 / VB.NET</div>
+                <div class="tech-item">MySQL</div>
+                <div class="tech-item">phpMyAdmin</div>
+                <div class="tech-item">ADO / ODBC Connector</div>
+                <div class="tech-item">Crystal Reports</div>
+            </div>
+        </section>
+    
+
+        <!-- Project Actions -->
+        <section>
+            <h2 class="section-title">Lihat Proyek</h2>
+            <div class="project-actions">
+                <a href="https://github.com/Abdi1975/toko-sepatu-versi-1" target="_blank" class="action-btn">
+                    <span>📂</span> Source Code GitHub
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Membuat bintang beranimasi
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Animasi parallax untuk bintang
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                const speed = Math.random() * 0.5 + 0.1;
+                star.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Inisialisasi
+        createStars();
+
+        // Animasi fade in saat scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe semua section
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Smooth hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

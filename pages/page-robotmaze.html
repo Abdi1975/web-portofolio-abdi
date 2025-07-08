@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Delivery Maze - Detail Proyek | Ramadhan Abdillah</title>
+    <link rel="stylesheet" href="../style.css" />
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <!-- Back Button -->
+    <a href="../index.html" class="back-button">
+        <span>←</span> Kembali
+    </a>
+    
+    <div class="container">
+        <!-- Project Hero Section -->
+        <header class="project-hero">
+            <h1 class="title-project">Robot Delivery Maze</h1>
+            <p class="project-subtitle">Simulasi Robot Pengantar Barang dalam Labirin</p>
+            <p class="project-category">Web Simulation Project</p>
+        </header>
+    
+        <!-- Project Showcase -->
+        <div class="project-showcase">
+            <div class="device-mockup">
+                <div class="laptop-mockup">
+                    <div class="laptop-screen">
+                        <div class="screen-bezel"></div>
+                        <div class="screen-content">
+                            <img src="../images/robotmaze.png" alt="Robot Delivery Maze Screenshot">
+                        </div>
+                    </div>
+                    <div class="laptop-hinge"></div>
+                    <div class="laptop-base"></div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Project Description -->
+        <section>
+            <h2 class="section-title">Tentang Proyek</h2>
+            <div class="section-content">
+                <p>Robot Delivery Maze adalah aplikasi simulasi berbasis web yang dirancang untuk memperagakan proses pengiriman barang oleh robot dalam lingkungan labirin. Pengguna dapat mengatur posisi awal robot, titik tujuan, serta rintangan atau tembok dalam peta grid.</p>
+                <br>
+                <p>Simulasi ini menggambarkan bagaimana robot bergerak dari satu titik ke titik lain sambil menghindari hambatan, menggunakan pendekatan sederhana berbasis logika atau algoritma jalur.</p>
+            </div>
+        </section>
+    
+        <!-- Features Section -->
+        <section>
+            <h2 class="section-title">Fitur Utama Aplikasi</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧭</span>
+                    <h3 class="feature-title">Tentukan Titik Start & Tujuan</h3>
+                    <p class="feature-desc">Pengguna dapat mengatur posisi awal robot serta tujuan pengiriman dengan mengklik grid.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">🧱</span>
+                    <h3 class="feature-title">Penempatan Rintangan</h3>
+                    <p class="feature-desc">Buat tembok pada grid untuk menciptakan tantangan bagi robot dalam mencari jalur.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3 class="feature-title">Simulasi Pergerakan Robot</h3>
+                    <p class="feature-desc">Robot bergerak otomatis menuju tujuan dengan mempertimbangkan rintangan di jalur.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3 class="feature-title">Reset Labirin</h3>
+                    <p class="feature-desc">Tombol reset disediakan untuk menghapus semua elemen dan memulai ulang simulasi.</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Technology Stack -->
+        <section>
+            <h2 class="section-title">Teknologi yang Digunakan</h2>
+            <div class="tech-stack">
+                <div class="tech-item">HTML5</div>
+                <div class="tech-item">CSS3</div>
+                <div class="tech-item">JavaScript</div>
+                <div class="tech-item">Canvas API</div>
+                <div class="tech-item">Responsive Design</div>
+            </div>
+        </section>
+    
+        <!-- Project Actions -->
+        <section>
+            <h2 class="section-title">Lihat Proyek</h2>
+            <div class="project-actions">
+                <a href="https://github.com/Abdi1975/robot-delivery-maze" target="_blank" class="action-btn">
+                    <span>📂</span> Source Code GitHub
+                </a>
+                <a href="https://abdi1975.github.io/robot-delivery-maze/" class="action-btn secondary">
+                    <span>🌐</span> Live Demo
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Membuat bintang beranimasi
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Animasi parallax untuk bintang
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                const speed = Math.random() * 0.5 + 0.1;
+                star.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Inisialisasi
+        createStars();
+
+        // Animasi fade in saat scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe semua section
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Smooth hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
